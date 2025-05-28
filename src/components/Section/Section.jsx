@@ -27,8 +27,8 @@ const usuarios = [
 ]
 
 export const Section = () => {
-    const handleClick = ()=>{
-        console.log('dale puto');
+    const handleClick = (name)=>{
+        console.log(`Contactando a $name{}`);
         
     }
   return (
@@ -40,7 +40,7 @@ export const Section = () => {
                     <img className='image' src={usuario.image} alt={usuario.name} />
                     <h2 className='name'>{usuario.name}</h2>
                     <p className='descripcion'>{usuario.descripcion}</p>  
-                    <button onClick={handleClick} >Click</button>                  
+                    <button id={usuario.id} onClick={()=>handleClick (usuario.name)} >Click</button>                  
                     </div>
                 )
             })
