@@ -28,19 +28,19 @@ const usuarios = [
 
 export const Section = () => {
     const handleClick = (name)=>{
-        console.log(`Contactando a $name{}`);
+        console.log(`Contactando a ${name}`);
         
     }
   return (
          <section>
          {
-            usuarios.map(usuario=> {
+            usuarios.map(({id, name, descripcion, image})=> {
                 return(
-                    <div className='card' key={usuario.id}>
-                    <img className='image' src={usuario.image} alt={usuario.name} />
-                    <h2 className='name'>{usuario.name}</h2>
-                    <p className='descripcion'>{usuario.descripcion}</p>  
-                    <button id={usuario.id} onClick={()=>handleClick (usuario.name)} >Click</button>                  
+                    <div className='card' key={id}>
+                    <img className='image' src={image} alt={name} />
+                    <h2 className='name'>{name}</h2>
+                    <p className='descripcion'>{descripcion}</p>  
+                    <button id={id} onClick={()=>handleClick (name)} >Click</button>                  
                     </div>
                 )
             })
