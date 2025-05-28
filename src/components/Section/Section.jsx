@@ -1,3 +1,5 @@
+import { use, useState } from 'react'
+import {UserCard} from '../UserCard/UserCard'
 import usuarioIMG from '../../assets/usuario.png'
 import './Section.css'
 
@@ -27,8 +29,14 @@ const usuarios = [
 ]
 
 export const Section = () => {
-    const handleClick = (name)=>{
-        console.log(`Contactando a ${name}`);
+
+    const [count, setCount] = useState(0)
+    
+
+    const handleClick = ()=>{
+        
+        setCount(count + 1)
+        //console.log(`Contactando a ${name}`);
         
     }
   return (
@@ -36,12 +44,7 @@ export const Section = () => {
          {
             usuarios.map(({id, name, descripcion, image})=> {
                 return(
-                    <div className='card' key={id}>
-                    <img className='image' src={image} alt={name} />
-                    <h2 className='name'>{name}</h2>
-                    <p className='descripcion'>{descripcion}</p>  
-                    <button id={id} onClick={()=>handleClick (name)} >Click</button>                  
-                    </div>
+                    <UserCard key={id} usuario={{id, name, descripcion, image}}/>
                 )
             })
          }
