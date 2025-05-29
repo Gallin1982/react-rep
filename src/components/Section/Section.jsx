@@ -33,18 +33,13 @@ export const Section = () => {
     const [count, setCount] = useState(0)
     
 
-    const handleClick = ()=>{
-        
-        setCount(count + 1)
-        //console.log(`Contactando a ${name}`);
-        
-    }
+    
   return (
          <section>
          {
-            usuarios.map(({id, name, descripcion, image})=> {
+            usuarios.map((usuario)=> {
                 return(
-                    <UserCard key={id} usuario={{id, name, descripcion, image}}/>
+                    <UserCard key={usuario.id} usuario={usuario}/>
                 )
             })
          }
