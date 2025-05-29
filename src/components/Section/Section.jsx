@@ -1,49 +1,48 @@
-import { use, useState } from 'react'
+import {  useState, useEffect } from 'react'
+
 import {UserCard} from '../UserCard/UserCard'
-import usuarioIMG from '../../assets/usuario.png'
+
+
 import './Section.css'
 
-const usuarios = [
-    {
-        id: 1,
-        name: 'Edgar Juárez',
-        descripcion: 'Desarrollador',
-        image: usuarioIMG
 
-    },
-    {
-        id: 2,
-        name: 'Leonardo Hernandez',
-        descripcion: 'Estilo',
-        image: usuarioIMG
-
-    },
-    {
-        id: 3,
-        name: 'Paola Espinoza',
-        descripcion: 'Nadadora',
-        image: usuarioIMG
-
-    }
-
-]
 
 export const Section = () => {
 
     const [count, setCount] = useState(0)
+    const [users, setUsers] = useState([])
+
     
+
+    useEffect(()=>{
+        console.log('ejecutado');
+        fetch('https://dummyjson.com/users')
+        .then(res=>res.json())
+        .then(data=>{console.log(data.users)
+         setUsers(data.users)});              
+
+        
+    }, [count])     
+
+    const handleClick = () => {
+        setCount(count + 1)
+    }    
 
     
   return (
+        <>
+        <h2>{count}</h2>
+        <button onClick={handleClick}>Contador</button>
          <section>
          {
-            usuarios.map((usuario)=> {
+            users.map((usuario)=> {
                 return(
                     <UserCard key={usuario.id} usuario={usuario}/>
                 )
             })
          }
         </section>
+        </>
     
   )
 }
