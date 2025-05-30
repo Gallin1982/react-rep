@@ -10,16 +10,16 @@ import './Section.css'
 export const Section = () => {
 
     const [count, setCount] = useState(1)
-    const [user, setUser] = useState({})
+    const [users, setUsers] = useState([])
 
     
 
     useEffect(()=>{
         console.log('ejecutado');
-        fetch(`https://dummyjson.com/users/${count}`)
+        fetch(`https://dummyjson.com/users`)
         .then(res=>res.json())
-        .then(data=>{console.log(data)
-         setUser(data)});              
+        .then(data=>{
+         setUsers(data.users)});              
 
         
     }, [count])     
@@ -34,8 +34,15 @@ export const Section = () => {
         <h2>{count}</h2>
         <button onClick={handleClick}>Siguiente</button>
          <section>
+            {
+                users.map(user => <UserCard key={user.id} usuario={user}/>)
+
+
+            }
+
+            
          
-            <UserCard key={user.id} usuario={user}/>
+            
          
         </section>
         </>
